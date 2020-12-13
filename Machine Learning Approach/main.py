@@ -83,8 +83,6 @@ print('Multiclass SVM test_error:', run_multiclass_svm_on_MNIST())
 # 4. Multinomial (Softmax) Regression and Gradient Descent
 #######################################################################
 
-# TODO: first fill out functions in softmax.py, or run_softmax_on_MNIST will not work
-
 
 def run_softmax_on_MNIST(temp_parameter=1):
     """
@@ -107,16 +105,11 @@ def run_softmax_on_MNIST(temp_parameter=1):
     test_error = compute_test_error(test_x, test_y, theta, temp_parameter)
     # Save the model parameters theta obtained from calling softmax_regression to disk.
     write_pickle_data(theta, "./theta.pkl.gz")
-
-    # TODO: add your code here for the "Using the Current Model" question in tab 4.
-    #      and print the test_error_mod3
     return test_error
 
 
 print('softmax test_error=', run_softmax_on_MNIST(temp_parameter=1))
 
-# TODO: Find the error rate for temp_parameter = [.5, 1.0, 2.0]
-#      Remember to return the tempParameter to 1, and re-run run_softmax_on_MNIST
 
 #######################################################################
 # 6. Changing Labels
@@ -130,11 +123,17 @@ def run_softmax_on_MNIST_mod3(temp_parameter=1):
 
     See run_softmax_on_MNIST for more info.
     """
-    # YOUR CODE HERE
-    raise NotImplementedError
+    train_x, train_y, test_x, test_y = get_MNIST_data()
+    train_y, test_y = update_y(train_y, test_y)
+    theta, cost_function_history = softmax_regression(
+        train_x, train_y, temp_parameter, alpha=0.3,
+        lambda_factor=1.0e-4, k=10, num_iterations=150)
+    test_error = compute_test_error(test_x, test_y, theta, temp_parameter)
+
+    return test_error
 
 
-# TODO: Run run_softmax_on_MNIST_mod3(), report the error rate
+print('softmax mod3 test_error=', run_softmax_on_MNIST_mod3(temp_parameter=1))
 
 
 #######################################################################
