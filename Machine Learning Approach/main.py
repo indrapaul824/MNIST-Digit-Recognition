@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-sys.path.append("..")
+sys.path.append("C:/Users/indra/My Projects/MNIST-Digit-Recognition/Machine Learning Approach")
 from utils import *
 from linear_regression import *
 from svm import *
@@ -25,7 +25,7 @@ plot_images(train_x[0:20, :])
 # TODO: first fill out functions in linear_regression.py, otherwise the functions below will not work
 
 
-def run_linear_regression_on_MNIST(lambda_factor=1):
+def run_linear_regression_on_MNIST(lambda_factor=0.01):
     """
     Trains linear regression, classifies test data, computes test error on test set
 
@@ -41,7 +41,7 @@ def run_linear_regression_on_MNIST(lambda_factor=1):
 
 
 # Don't run this until the relevant functions in linear_regression.py have been fully implemented.
-print('Linear Regression test_error =', run_linear_regression_on_MNIST(lambda_factor=1))
+print('Linear Regression test_error =', run_linear_regression_on_MNIST(lambda_factor=0.01))
 
 
 #######################################################################
