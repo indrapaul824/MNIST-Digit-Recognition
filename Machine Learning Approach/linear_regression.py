@@ -1,6 +1,5 @@
 import numpy as np
 
-### Functions for you to fill in ###
 
 
 def closed_form(X, Y, lambda_factor):
