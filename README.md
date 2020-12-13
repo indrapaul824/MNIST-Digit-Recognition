@@ -12,7 +12,7 @@ I used Python's **NumPy** numerical library for handling arrays and array operat
 
 1. Note on software: I used python 3.8 augmented with the NumPy numerical toolbox, the matplotlib plotting toolbox. In this project, I also used the scikit-learn package, which you could install by `conda install scikit-learn` or `pip install sklearn`.
 
-Download .zip file or clone the repo into a working directory. The folder contains the various data files in the Dataset directory, along with the following python files:
+*Download .zip file* or *clone the repo* into a working directory. The folder contains the various data files in the Dataset directory, along with the following python files:
 > <h4>Machine Learning Approach:</h4>
   * part1/linear_regression.py where I've implemented linear regression
   * part1/svm.py where I've implemented support vector machine
