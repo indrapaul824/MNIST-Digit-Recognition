@@ -1,7 +1,6 @@
 import numpy as np
 
 
-
 def closed_form(X, Y, lambda_factor):
     """
     Computes the closed form solution of linear regression with L2 regularization
