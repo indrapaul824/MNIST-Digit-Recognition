@@ -1,8 +1,5 @@
 import numpy as np
 
-### Functions for you to fill in ###
-
-
 
 def polynomial_kernel(X, Y, c, p):
     """
@@ -19,8 +16,10 @@ def polynomial_kernel(X, Y, c, p):
         Returns:
             kernel_matrix - (n, m) Numpy array containing the kernel matrix
     """
-    # YOUR CODE HERE
-    raise NotImplementedError
+    K = X @ Y.transpose()
+    K += c
+    K **= p
+    return K
 
 
 
