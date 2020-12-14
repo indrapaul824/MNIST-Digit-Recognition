@@ -167,10 +167,6 @@ plot_images(train_x[1, ])
 
 
 ## Cubic Kernel ##
-# TODO: Find the 10-dimensional PCA representation of the training and test set
-
-
-# TODO: First fill out cubicFeatures() function in features.py as the below code requires it.
 
 train_cube = cubic_features(train_pca10)
 test_cube = cubic_features(test_pca10)
@@ -178,5 +174,7 @@ test_cube = cubic_features(test_pca10)
 # after applying the cubic kernel feature mapping to the 10-dimensional PCA representations.
 
 
-# TODO: Train your softmax regression model using (train_cube, train_y)
-#       and evaluate its accuracy on (test_cube, test_y).
+theta, cost_function_history = softmax_regression(
+        train_cube, train_y, temp_parameter, alpha=0.3,
+        lambda_factor=1.0e-4, k=10, num_iterations=150)
+test_error = compute_test_error(test_cube, test_y, theta, temp_parameter)
