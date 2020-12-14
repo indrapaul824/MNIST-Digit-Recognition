@@ -1,10 +1,10 @@
-import sys
-sys.path.append("..")
-import utils
 from utils import *
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.sparse as sparse
+import sys
+sys.path.append("..")
+
 
 
 def augment_feature_vector(X):
@@ -159,8 +159,13 @@ def softmax_regression(X, Y, temp_parameter, alpha, lambda_factor, k, num_iterat
     theta = np.zeros([k, X.shape[1]])
     cost_function_progression = []
     for i in range(num_iterations):
-        cost_function_progression.append(compute_cost_function(X, Y, theta, lambda_factor, temp_parameter))
-        theta = run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_parameter)
+        cost_function_progression.append(
+            compute_cost_function(X, Y,
+                                  theta,
+                                  lambda_factor,
+                                  temp_parameter))
+        theta = run_gradient_descent_iteration(
+            X, Y, theta, alpha, lambda_factor, temp_parameter)
     return theta, cost_function_progression
 
 
@@ -180,7 +185,7 @@ def get_classification(X, theta, temp_parameter):
     """
     X = augment_feature_vector(X)
     probabilities = compute_probabilities(X, theta, temp_parameter)
-    return np.argmax(probabilities, axis = 0)
+    return np.argmax(probabilities, axis=0)
 
 
 def plot_cost_function_over_time(cost_function_history):
@@ -191,6 +196,5 @@ def plot_cost_function_over_time(cost_function_history):
 
 
 def compute_test_error(X, Y, theta, temp_parameter):
-    error_count = 0.
     assigned_labels = get_classification(X, theta, temp_parameter)
     return 1 - np.mean(assigned_labels == Y)
