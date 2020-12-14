@@ -167,6 +167,13 @@ plot_images(train_x[1, ])
 
 
 ## Cubic Kernel ##
+n_components = 10
+
+train_x_centered, feature_means = center_data(train_x)
+pcs = principal_components(train_x_centered)
+train_pca10 = project_onto_PC(train_x, pcs, n_components, feature_means)
+test_pca10 = project_onto_PC(test_x, pcs, n_components, feature_means)
+
 
 train_cube = cubic_features(train_pca10)
 test_cube = cubic_features(test_pca10)
@@ -175,6 +182,8 @@ test_cube = cubic_features(test_pca10)
 
 
 theta, cost_function_history = softmax_regression(
-        train_cube, train_y, temp_parameter, alpha=0.3,
+        train_cube, train_y, temp_parameter=1, alpha=0.3,
         lambda_factor=1.0e-4, k=10, num_iterations=150)
-test_error = compute_test_error(test_cube, test_y, theta, temp_parameter)
+test_error = compute_test_error(test_cube, test_y, theta, temp_parameter=1)
+
+print('softmax cubic kernel PCA test_error=', test_error)
