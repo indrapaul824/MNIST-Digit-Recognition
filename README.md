@@ -1,4 +1,4 @@
-<h1 align="center">MNIST-Digit-Recognition</h1>
+<h1 align="center">MNIST Digit Recognition</h1>
 
 Implemented various Machine Learning and Deep Learning Algorithms on the famous digit recognition problem using the **MNIST** (Mixed National Institute of Standards and Technology) database.
 
