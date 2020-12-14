@@ -6,20 +6,11 @@ def project_onto_PC(X, pcs, n_components, feature_means):
     """
     Given principal component vectors pcs = principal_components(X)
     this function returns a new data array in which each sample in X
-    has been projected onto the first n_components principcal components.
+    has been projected onto the first n_components principal components.
     """
-    # TODO: first center data using the feature_means
-    # TODO: Return the projection of the centered dataset
-    #       on the first n_components principal components.
-    #       This should be an array with dimensions: n x n_components.
-    # Hint: these principal components = first n_components columns
-    #       of the eigenvectors returned by principal_components().
-    #       Note that each eigenvector is already be a unit-vector,
-    #       so the projection may be done using matrix multiplication.
-    raise NotImplementedError
+    centered_data = X - feature_means
+    return np.dot(centered_data, pcs[:, range(n_components)])
 
-
-### Functions which are already complete, for you to use ###
 
 def cubic_features(X):
     """
@@ -29,8 +20,7 @@ def cubic_features(X):
     n, d = X.shape  # dataset size, input dimension
     X_withones = np.ones((n, d + 1))
     X_withones[:, :-1] = X
-    new_d = 0  # dimension of output
-    new_d = int((d + 1) * (d + 2) * (d + 3) / 6)
+    new_d = int((d + 1) * (d + 2) * (d + 3) / 6)  # dimension of output
 
     new_data = np.zeros((n, new_d))
     col_index = 0
@@ -68,14 +58,14 @@ def cubic_features(X):
             new_data[i, newdata_colindex] = X_withones[i, j]**3
             newdata_colindex += 1
             for k in range(j + 1, d + 1):
-                new_data[i, newdata_colindex] = X_withones[i, j]**2 * X_withones[i, k] * (3**(0.5))
+                new_data[i, newdata_colindex] = X_withones[i, j]**2 * X_withones[i, k] * (3 ** 0.5)
                 newdata_colindex += 1
 
-                new_data[i, newdata_colindex] = X_withones[i, j] * X_withones[i, k]**2 * (3**(0.5))
+                new_data[i, newdata_colindex] = X_withones[i, j] * X_withones[i, k]**2 * (3 ** 0.5)
                 newdata_colindex += 1
 
                 if k < d:
-                    new_data[i, newdata_colindex] = X_withones[i, j] * X_withones[i, k] * (6**(0.5))
+                    new_data[i, newdata_colindex] = X_withones[i, j] * X_withones[i, k] * (6 ** 0.5)
                     newdata_colindex += 1
 
     return new_data
@@ -90,9 +80,8 @@ def center_data(X):
 
     Returns:
         - (n, d) NumPy array X' where for each i = 1, ..., n and j = 1, ..., d:
-        X'[i][j] = X[i][j] - means[j]       
-	- (d, ) NumPy array with the columns means
-
+        X'[i][j] = X[i][j] - means[j]
+        - (d, ) NumPy array with the columns means
     """
     feature_means = X.mean(axis=0)
     return (X - feature_means), feature_means
@@ -123,8 +112,6 @@ def principal_components(centered_data):
     return eigen_vectors
 
 
-###Correction note:  Differing from the release, this function takes an extra input feature_means.
-
 def plot_PC(X, pcs, labels, feature_means):
     """
     Given the principal component vectors as the columns of matrix pcs,
@@ -143,8 +130,6 @@ def plot_PC(X, pcs, labels, feature_means):
     ax.set_ylabel('PC 2')
     plt.show()
 
-
-###Correction note:  Differing from the release, this function takes an extra input feature_means.
 
 def reconstruct_PC(x_pca, pcs, n_components, X, feature_means):
     """
