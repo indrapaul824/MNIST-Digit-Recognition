@@ -1,5 +1,5 @@
 import sys
-sys.path.append("..")
+sys.path.append("C:/Users/indra/My Projects/MNIST-Digit-Recognition/Machine Learning Approach")
 import utils
 from utils import *
 import numpy as np
