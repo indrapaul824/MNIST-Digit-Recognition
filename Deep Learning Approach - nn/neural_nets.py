@@ -78,9 +78,9 @@ class NeuralNetwork():
         input_to_hidden_weight_gradients = np.transpose(input_values * np.transpose(hidden_layer_error))  # [2 by 1] * [1 by 3] = [2 by 3]
 
         # Use gradients to adjust weights and biases using gradient descent
-        self.biases = # TODO
-        self.input_to_hidden_weights = # TODO
-        self.hidden_to_output_weights = # TODO
+        self.biases = self.biases - self.learning_rate * bias_gradients
+        self.input_to_hidden_weights = self.input_to_hidden_weights - self.learning_rate * input_to_hidden_weight_gradients
+        self.hidden_to_output_weights = self.hidden_to_output_weights - self.learning_rate * hidden_to_output_weight_gradients
 
     def predict(self, x1, x2):
 
