@@ -96,14 +96,14 @@ class NeuralNetwork():
 
         return activated_output.item()
 
-    # Run this to train your neural network once you complete the train method
+
     def train_neural_network(self):
 
         for epoch in range(self.epochs_to_train):
             for x,y in self.training_points:
                 self.train(x[0], x[1], y)
 
-    # Run this to test your neural network implementation for correctness after it is trained
+
     def test_neural_network(self):
 
         for point in self.testing_points:
@@ -114,9 +114,9 @@ class NeuralNetwork():
                 print("Point ", point[0], point[1], " failed to be predicted correctly.")
                 return
 
+
 x = NeuralNetwork()
 
 x.train_neural_network()
 
-# UNCOMMENT THE LINE BELOW TO TEST YOUR NEURAL NETWORK
-# x.test_neural_network()
+x.test_neural_network()
