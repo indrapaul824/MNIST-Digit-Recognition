@@ -70,12 +70,12 @@ class NeuralNetwork():
         ### Backpropagation ###
 
         # Compute gradients
-        output_layer_error = # TODO
-        hidden_layer_error = # TODO (3 by 1 matrix)
+        output_layer_error = (activated_output - y) * output_layer_activation_derivative(output)  # 1 by 1
+        hidden_layer_error = np.multiply((np.transpose(self.hidden_to_output_weights) * output_layer_error), vec_relu_derivative(hidden_layer_weighted_input))  # 3 by 1
 
-        bias_gradients = # TODO
-        hidden_to_output_weight_gradients = # TODO
-        input_to_hidden_weight_gradients = # TODO
+        bias_gradients = hidden_layer_error
+        hidden_to_output_weight_gradients = np.transpose(hidden_layer_activation * output_layer_error)  # [3 by 1] * [1 by 1] = [3 by 1]
+        input_to_hidden_weight_gradients = np.transpose(input_values * np.transpose(hidden_layer_error))  # [2 by 1] * [1 by 3] = [2 by 3]
 
         # Use gradients to adjust weights and biases using gradient descent
         self.biases = # TODO
